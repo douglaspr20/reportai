@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T00:00:00Z",
+  "title": "Design System: reportAi",
+  "extensions": {
+    "colorMeta": {
+      "primary-ink": { "role": "primary", "displayName": "Ledger Ink", "canonical": "#17171a", "tonalRamp": ["#0b0b0d", "#17171a", "#2e2e33", "#4d4d55", "#6c6c75", "#a3a3aa", "#d6d6d1", "#f3f3f1"] },
+      "citation-blue": { "role": "secondary", "displayName": "Provenance Blue", "canonical": "#2557d6", "tonalRamp": ["#0f2560", "#16348a", "#1d47b3", "#2557d6", "#4f78e6", "#7ea2ff", "#b9ccff", "#e9effc"] },
+      "ground": { "role": "neutral", "displayName": "Warm Ground", "canonical": "#f6f6f4", "tonalRamp": ["#0c0c0e", "#131316", "#25252b", "#4d4d55", "#8d8d96", "#d6d6d1", "#ebebe8", "#f6f6f4"] },
+      "surface": { "role": "neutral", "displayName": "Panel White", "canonical": "#ffffff" },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#e6e6e2" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "The single page heading." },
+      "title": { "displayName": "Panel title", "purpose": "Registro, Preguntar, the record header." },
+      "body": { "displayName": "Body", "purpose": "Chat answers and the lead copy, up to ~68ch." },
+      "ui": { "displayName": "UI", "purpose": "Controls, table cells, field values." },
+      "label": { "displayName": "Label", "purpose": "Section labels inside panels; never uppercase." },
+      "data": { "displayName": "Data", "purpose": "Ids, amounts, JSON, SQL, model ids, similarity, null." }
+    },
+    "shadows": [
+      { "name": "raised-chip", "value": "0 1px 2px rgb(20 20 30 / 0.05)", "purpose": "Selected segmented tab and the preview image on sunken ground." },
+      { "name": "floating", "value": "0 1px 2px rgb(20 20 30 / 0.04), 0 4px 16px -4px rgb(20 20 30 / 0.08)", "purpose": "Drop-replacement toast only." }
+    ],
+    "motion": [
+      { "name": "state", "value": "150ms ease", "purpose": "Color changes on hover, focus and selection." },
+      { "name": "reveal", "value": "220ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "New answers and the extraction result fade up 4px." },
+      { "name": "skeleton", "value": "1.4s ease-in-out infinite", "purpose": "Shimmer on loading placeholders." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one primary action per panel.",
+      "html": "<button class=\"ds-btn-primary\">Confirmar y guardar</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 16px;border:0;border-radius:6px;background:var(--ink,#17171a);color:var(--ink-fg,#fff);font:500 13px Inter,system-ui,sans-serif;cursor:pointer;transition:background-color 150ms}.ds-btn-primary:hover{background:var(--ink-hover,#2e2e33)}.ds-btn-primary:focus-visible{outline:2px solid var(--accent,#2557d6);outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Retry, upload another.",
+      "html": "<button class=\"ds-btn-secondary\">Volver a analizar</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;height:32px;padding:0 12px;border:1px solid var(--line-strong,#d6d6d1);border-radius:6px;background:var(--surface,#fff);color:var(--fg,#17171a);font:500 13px Inter,system-ui,sans-serif;cursor:pointer;transition:background-color 150ms}.ds-btn-secondary:hover{background:var(--surface-2,#f3f3f1)}.ds-btn-secondary:focus-visible{outline:2px solid var(--accent,#2557d6);outline-offset:2px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Panel-header tools.",
+      "html": "<button class=\"ds-btn-ghost\">Copiar JSON</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;height:28px;padding:0 10px;border:0;border-radius:6px;background:transparent;color:var(--fg-2,#4d4d55);font:500 12px Inter,system-ui,sans-serif;cursor:pointer;transition:background-color 150ms,color 150ms}.ds-btn-ghost:hover{background:var(--surface-2,#f3f3f1);color:var(--fg,#17171a)}.ds-btn-ghost:focus-visible{outline:2px solid var(--accent,#2557d6);outline-offset:2px}"
+    },
+    {
+      "name": "Type Badge",
+      "kind": "chip",
+      "refersTo": "type-badge",
+      "description": "Document type: dot plus label tinted from the type hue.",
+      "html": "<span class=\"ds-badge\"><i></i>Factura</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:9999px;color:#2557d6;background:color-mix(in srgb,#2557d6 12%,transparent);font:500 12px Inter,system-ui,sans-serif}.ds-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}"
+    },
+    {
+      "name": "Citation Chip",
+      "kind": "custom",
+      "refersTo": "citation-chip",
+      "description": "Inline [n] linking an answer to its source document.",
+      "html": "<p class=\"ds-answer\">Suman 1.140,40 € <a class=\"ds-cite\" href=\"#\">1</a><a class=\"ds-cite\" href=\"#\">2</a></p>",
+      "css": ".ds-answer{font:400 14px/1.65 Inter,system-ui,sans-serif;color:var(--fg,#17171a)}.ds-cite{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin:0 2px;padding:0 4px;border-radius:4px;background:var(--accent-soft,#e9effc);color:var(--accent-fg,#1d47b3);font:500 11px 'JetBrains Mono',ui-monospace,monospace;text-decoration:none;transition:background-color 150ms,color 150ms}.ds-cite:hover,.ds-cite:focus-visible{background:var(--accent,#2557d6);color:#fff;outline:none}"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Bordered section container; elevation by hairline only.",
+      "html": "<section class=\"ds-panel\"><header>Registro <span>4</span></header><div>Contenido</div></section>",
+      "css": ".ds-panel{border:1px solid var(--line,#e6e6e2);border-radius:12px;background:var(--surface,#fff);overflow:hidden;font:400 13px Inter,system-ui,sans-serif;color:var(--fg,#17171a)}.ds-panel header{padding:16px 20px 12px;font-weight:600;font-size:15px;letter-spacing:-0.01em}.ds-panel header span{font:400 12px 'JetBrains Mono',monospace;color:var(--fg-3,#6c6c75)}.ds-panel div{padding:16px 20px;border-top:1px solid var(--line,#e6e6e2)}"
+    },
+    {
+      "name": "Composer",
+      "kind": "input",
+      "description": "Chat input with ink send button.",
+      "html": "<div class=\"ds-composer\"><textarea rows=\"1\" placeholder=\"Pregunta sobre tus documentos…\"></textarea><button aria-label=\"Preguntar\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12 7-7 7 7\"/><path d=\"M12 19V5\"/></svg></button></div>",
+      "css": ".ds-composer{display:flex;align-items:flex-end;gap:8px;padding:6px;border:1px solid var(--line-strong,#d6d6d1);border-radius:8px;background:var(--surface,#fff);transition:border-color 150ms}.ds-composer:focus-within{border-color:var(--accent,#2557d6)}.ds-composer textarea{flex:1;border:0;outline:0;resize:none;background:transparent;padding:6px 8px;font:400 14px Inter,system-ui,sans-serif;color:var(--fg,#17171a)}.ds-composer button{width:32px;height:32px;border:0;border-radius:6px;background:var(--ink,#17171a);color:var(--ink-fg,#fff)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Ledger",
+    "overview": "reportAi is a working ledger, not a showroom: the category's familiar language executed at Linear/Stripe craft, with provenance (confidence, model id, null values, SQL, similarity, citations) treated as first-class content. Moderate, tool-like density; neutrals, one provenance blue and four type hues; light and dark follow the system.",
+    "keyCharacteristics": [
+      "Neutral warm-gray ground with white (near-black in dark) bordered panels",
+      "Inter for everything human, JetBrains Mono only for data, ids, code and figures",
+      "Ink-colored primary actions; blue appears only where something is traced or focused",
+      "Honest emptiness: absent values render as a muted mono null",
+      "Live process state (the four-step pipeline) instead of decorative hero content"
+    ],
+    "rules": [
+      { "name": "The Provenance Blue Rule", "body": "Blue means \"this is traced or focused\": citations, the source row they light, focus and selection. Never decoration, wordmarks, headings or primary buttons.", "section": "colors" },
+      { "name": "The Ink Action Rule", "body": "The primary action is an ink button, one per panel.", "section": "colors" },
+      { "name": "The Mono Is Data Rule", "body": "Monospace marks machine values. If a human reads it as prose, it is Inter.", "section": "typography" },
+      { "name": "The Border-Or-Shadow Rule", "body": "Panels declare elevation once, with a hairline border; never with an added soft shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do show what the model returned exactly, rendering absent values as a muted mono null.",
+      "Do put machine values (ids, amounts, SQL, JSON, model ids, similarity) in JetBrains Mono with tabular numerals.",
+      "Do keep provenance visible at first glance: confidence, method chip, executed SQL and cited sources.",
+      "Do collapse tables into stacked label/value rows on narrow screens instead of horizontal scrolling.",
+      "Do use skeleton bars for loading content, and a 14px spinner only beside a status line."
+    ],
+    "donts": [
+      "Don't use provenance blue outside citations, focus, selection and the drop target.",
+      "Don't add a shadow to a bordered panel, or nest filled tiles inside panels; use hairline dividers.",
+      "Don't hide technique behind decoration: no collapsing confidence or similarity into icons.",
+      "Don't add uppercase tracked labels or eyebrows above headings."
+    ]
+  }
+}
